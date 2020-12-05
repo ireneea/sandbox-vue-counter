@@ -42,7 +42,7 @@ export default Vue.extend({
         clearInterval(this.intervalId);
       }
     },
-    setDiff: function() {
+    setDiff() {
       this.remaining = getDateDiff(new Date(), this.endTime);
     },
     start() {
