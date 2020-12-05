@@ -42,12 +42,12 @@ export default Vue.extend({
         clearInterval(this.intervalId);
       }
     },
-    setDiff() {
+    setDiff: function() {
       this.remaining = getDateDiff(new Date(), this.endTime);
     },
     start() {
       this.clear();
-      this.intervalId = setInterval(this.setDiff.bind(this), 1000);
+      this.intervalId = setInterval(this.setDiff, 1000);
     },
   },
   mounted() {
