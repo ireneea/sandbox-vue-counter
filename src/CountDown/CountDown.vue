@@ -1,5 +1,6 @@
 <template>
   <Time
+    v-if="ready"
     :days="remaining.days"
     :hours="remaining.hours"
     :minutes="remaining.minutes"
@@ -14,6 +15,7 @@ import getDateDiff, { DateDiff } from "./get-date-diff";
 import Time from "./Time.vue";
 
 interface VueData {
+  ready: boolean;
   intervalId: undefined | number;
   remaining: DateDiff;
 }
@@ -32,6 +34,7 @@ export default Vue.extend({
   },
   data: function data(): VueData {
     return {
+      ready: false,
       intervalId: undefined,
       remaining: {
         days: 0,
@@ -61,6 +64,7 @@ export default Vue.extend({
           0,
         ),
       );
+      this.ready = true;
     },
     start() {
       this.clear();
