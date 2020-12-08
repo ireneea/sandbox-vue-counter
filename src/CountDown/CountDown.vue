@@ -24,7 +24,7 @@ interface VueData {
 const isExpired = (diff: DateDiff) => Object.values(diff).some(val => val < 0);
 
 export default Vue.extend({
-  name: "CountDown",
+  name: "Countdown",
   components: {
     Time,
   },

@@ -1,32 +1,32 @@
 <template>
   <div id="app">
-    <CountDown
+    <Countdown
       :year="year"
       :month="month"
       :day="day"
       :hour="hour"
       :minute="minute"
-    ></CountDown>
+    ></Countdown>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import CountDown from "./CountDown/CountDown.vue";
+import Countdown from "./Countdown/Countdown.vue";
 
 export default Vue.extend({
   name: "App",
   data: function() {
     return {
-      year: 2020,
-      month: 12,
-      day: 9,
+      year: 2021,
+      month: 1,
+      day: 1,
       hour: 12,
       minute: 30,
     };
   },
   components: {
-    CountDown,
+    Countdown,
   },
 });
 </script>
