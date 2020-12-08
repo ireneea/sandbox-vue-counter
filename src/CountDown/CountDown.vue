@@ -15,10 +15,13 @@ import getDateDiff, { DateDiff } from "./get-date-diff";
 import Time from "./Time.vue";
 
 interface VueData {
+  /** Prevent showing the countdown before the calculation of the remaining time */
   ready: boolean;
   intervalId: undefined | number;
   remaining: DateDiff;
 }
+
+const isExpired = (diff: DateDiff) => Object.values(diff).some(val => val < 0);
 
 export default Vue.extend({
   name: "CountDown",
@@ -52,7 +55,7 @@ export default Vue.extend({
       }
     },
     setDiff() {
-      this.remaining = getDateDiff(
+      const remaining = getDateDiff(
         new Date(),
         new Date(
           this.year,
@@ -64,6 +67,19 @@ export default Vue.extend({
           0,
         ),
       );
+
+      if (isExpired(remaining)) {
+        this.remaining = {
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+          milliSeconds: 0,
+        };
+      } else {
+        this.remaining = remaining;
+      }
+
       this.ready = true;
     },
     start() {
