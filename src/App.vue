@@ -2,18 +2,19 @@
   <div id="app">
     <h1>Count Down</h1>
 
-    <div>
-      <div id="days">{{ remaining.days }} Days</div>
-      <div id="hours">{{ remaining.hours }} Hours</div>
-      <div id="minutes">{{ remaining.minutes }} Minutes</div>
-      <div id="seconds">{{ remaining.seconds }} Seconds</div>
-    </div>
+    <Time
+      :days="remaining.days"
+      :hours="remaining.hours"
+      :minutes="remaining.minutes"
+      :seconds="remaining.seconds"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import getDateDiff, { DateDiff } from "./get-date-diff";
+import Time from "./Time.vue";
 
 interface VueData {
   endTime: Date;
@@ -23,6 +24,9 @@ interface VueData {
 
 export default Vue.extend({
   name: "App",
+  components: {
+    Time,
+  },
   data: function data(): VueData {
     return {
       endTime: new Date(2021, 11, 4, 17, 20, 0),
@@ -56,7 +60,6 @@ export default Vue.extend({
   destroyed() {
     this.clear();
   },
-  components: {},
 });
 </script>
 
